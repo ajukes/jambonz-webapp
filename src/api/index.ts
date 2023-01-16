@@ -58,6 +58,7 @@ import type {
   Limit,
   LimitCategories,
   PasswordSettings,
+  JaegerResponse,
 } from "./types";
 import { StatusCodes } from "./types";
 
@@ -534,6 +535,14 @@ export const getRecentCall = (sid: string, callSid: string) => {
     import.meta.env.DEV
       ? `${DEV_BASE_URL}/Accounts/${sid}/RecentCalls/${callSid}`
       : `${API_ACCOUNTS}/${sid}/RecentCalls/${callSid}`
+  );
+};
+
+export const getJaegerTrace = (sid: string, traceId: string) => {
+  return getFetch<JaegerResponse>(
+    import.meta.env.DEV
+      ? `${DEV_BASE_URL}/Accounts/${sid}/RecentCalls/trace${traceId}`
+      : `${API_ACCOUNTS}/${sid}/RecentCalls/${traceId}`
   );
 };
 

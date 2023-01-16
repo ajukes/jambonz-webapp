@@ -113,6 +113,52 @@ export interface PasswordSettings {
   require_special_character: number;
 }
 
+export interface JaegerResponse {
+  resourceSpans: ResourceSpan[];
+}
+
+export interface ResourceSpan {
+  resource: SpanResource;
+  instrumentationLibrarySpans: InstrumentationLibrarySpan[];
+}
+
+export interface SpanResource {
+  attributes: SpanAttribute[];
+}
+
+export interface SpanAttribute {
+  key: string;
+  value: SpanAttributeValue;
+}
+
+export interface SpanAttributeValue {
+  stringValue?: string;
+  doubleValue?: number;
+  longValue?: number;
+  booleanValue?: boolean;
+}
+
+export interface InstrumentationLibrarySpan {
+  instrumentationLibrary: InstrumentationLibrary;
+  spans: Span[];
+}
+
+export interface InstrumentationLibrary {
+  name: string;
+  version: string;
+}
+
+export interface Span {
+  traceId: string;
+  spanId: string;
+  parentSpanId: string;
+  name: string;
+  kind: string;
+  startTimeUnixNano: string;
+  endTimeUnixNano: string;
+  attributes: SpanAttribute[];
+}
+
 /** API responses/payloads */
 
 export interface User {
@@ -266,6 +312,7 @@ export interface MSTeamsTenant {
 export interface RecentCall {
   account_sid: string;
   call_sid: string;
+  trace_id: string;
   from: string;
   to: string;
   answered: boolean;
